@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/mona_bg"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutSearch"
+        android:layout_width="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="2sp"
+            android:layout_marginRight="2sp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:cardCornerRadius="18sp">
+            <androidx.appcompat.widget.Toolbar
+                android:background="@android:color/transparent"
+
+                android:id="@+id/toolBarSearchSongs"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"/>
+        </androidx.cardview.widget.CardView>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ListSearchSong"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appBarLayoutSearch"
+        android:background="@drawable/mona_bg" />
+
+    <TextView
+        android:id="@+id/noDataSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:textColorHint="#FB0000"
+        android:text="No data found"
+        android:fontFamily="@font/chrusty_rock"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textColor="@color/black_main" />
+</RelativeLayout>

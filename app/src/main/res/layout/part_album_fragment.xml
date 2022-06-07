@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="10sp"
+    android:layout_marginLeft="10sp">
+    <FrameLayout
+        android:id="@+id/frameLayoutAllList"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageViewAllList"
+            android:layout_width="164dp"
+            android:layout_height="177dp"
+            android:src="@drawable/mada"
+            android:scaleType="centerCrop" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textTitleAllList"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_gravity="left"
+        android:ellipsize="end"
+        android:lines="2"
+        android:maxWidth="200dp"
+        android:maxLines="2"
+
+        android:text="Title text all List"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textArticleAllList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Article"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

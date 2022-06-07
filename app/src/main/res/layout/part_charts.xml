@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp">
+    <LinearLayout
+        android:id="@+id/LinearCardViewPlayList"
+        android:orientation="vertical"
+        android:background="@color/black_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewCharts"
+            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            />
+
+        <TextView
+            android:id="@+id/textViewCharts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxWidth="128dp"
+
+            android:fontFamily="@font/roboto_slab_bold_pkgr"
+            android:maxLines="1"
+            android:text="Textview"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+</LinearLayout>

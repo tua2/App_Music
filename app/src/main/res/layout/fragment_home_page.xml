@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollbars="none"
+    android:fillViewport="true">
+    <LinearLayout
+        android:id="@+id/mainLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:background="@color/black_main"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@color/black_main"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50sp"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_height="50sp"
+                    android:src="@drawable/flower"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/LucBao" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="26sp"
+                    android:textColor="@color/LucBao"
+                    android:fontFamily="@font/chrusty_rock"
+                    android:layout_gravity="center_vertical"
+                    android:text="YoMusic"/>
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/black_main"
+                    app:lottie_autoPlay="true"
+                    android:layout_marginLeft="128dp"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/bell" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentTrendingHits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.tuan.apmusic.Fragment.Fragment_Trending_Hits"
+            android:layout_marginTop="10sp"
+            tools:layout ="@layout/fragment_trending_hits" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentPlayList"
+            android:name="com.tuan.apmusic.Fragment.Fragment_PlayList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_playlist" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentAlbum"
+            android:name="com.tuan.apmusic.Fragment.Fragment_Album_Singer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_album" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentCharts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.tuan.apmusic.Fragment.Fragment_Charts"
+            tools:layout="@layout/fragment_charts" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentTopic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.tuan.apmusic.Fragment.Fragment_Topic"
+            tools:layout="@layout/fragment_topic" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentMostLikedSongs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.tuan.apmusic.Fragment.Fragment_Most_Liked_Song"
+            tools:layout="@layout/fragment_most_liked_song" />
+
+    </LinearLayout>
+</ScrollView>
