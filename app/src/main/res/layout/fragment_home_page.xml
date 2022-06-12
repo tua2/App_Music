@@ -40,7 +40,7 @@
                     android:textColor="@color/LucBao"
                     android:fontFamily="@font/chrusty_rock"
                     android:layout_gravity="center_vertical"
-                    android:text="YoMusic"/>
+                    android:text="MusicApp"/>
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="35dp"
