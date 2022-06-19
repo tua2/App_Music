@@ -21,6 +21,9 @@ public interface DataService {
 
     @GET("api/getSongInTrending")
     Call<List<Trending>> GetDataTrending();
+    
+    @GET("api/getAllSong")
+    Call<List<Song>> GetAllData();
 
     @GET("api/getSongPlayList")
     Call<List<PlayListSong>> GetDataSongPlayList();
