@@ -46,16 +46,34 @@ public class Fragment_Search extends Fragment {
     RecyclerView recyclerViewSearchSong;
     TextView noData;
     SearchSongsAdapter searchSongsAdapter;
+    List<Song> songArrayList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_search, container, false);
-
+        songArrayList=new ArrayList<Song>();
         toolbarSearch = view.findViewById(R.id.toolBarSearchSongs);
         recyclerViewSearchSong = view.findViewById(R.id.ListSearchSong);
         noData = view.findViewById(R.id.noDataSearch);
+        DataService dataService = APIService.getService();
+        Call<List<Song>> callback = dataService.GetAllData();
+        callback.enqueue(new Callback<List<Song>>() {
+            @Override
+            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
+                songArrayList.addAll(response.body());
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                    recyclerViewSearchSong.setLayoutManager(linearLayoutManager);
+                    searchSongsAdapter = new SearchSongsAdapter(getActivity(), new ArrayList<Song>());
+//                set adapter for recycle view
+                    recyclerViewSearchSong.setAdapter(searchSongsAdapter);
+            }
 
+            @Override
+            public void onFailure(Call<List<Song>> call, Throwable t) {
+
+            }
+        });
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbarSearch);
         toolbarSearch.setTitle("");
         setHasOptionsMenu(true);
@@ -78,7 +96,7 @@ public class Fragment_Search extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                SearchSongs(s);
+                Search(s);
                 return false;
             }
 
@@ -90,50 +108,65 @@ public class Fragment_Search extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    private void SearchSongs(String query){
-        DataService dataService = APIService.getService();
-
-        ProgressDialog dialog = ProgressDialog.show(
-                getActivity(),"","Please wait...",true
-        );
-
-        Call<List<Song>> callback = dataService.GetDataSearch(query);
-
-        callback.enqueue(new Callback<List<Song>>() {
-            @Override
-            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
-
-                ArrayList<Song> songArrayList = (ArrayList<Song>) response.body();
-
-                if (songArrayList.size() > 0) {
-
-                    dialog.dismiss();
-
-                    searchSongsAdapter = new SearchSongsAdapter(getActivity(), songArrayList);
+    private  void Search(String s){
+        List<Song> temp=new ArrayList<Song>();
+        for(int i=0;i<songArrayList.size();i++){
+            if(songArrayList.get(i).getNameSong().toLowerCase().contains(s.toLowerCase())||songArrayList.get(i).getArtists().toLowerCase().contains(s.toLowerCase())){
+                temp.add(songArrayList.get(i));
+            }
+        }
+    searchSongsAdapter = new SearchSongsAdapter(getActivity(), temp);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                     recyclerViewSearchSong.setLayoutManager(linearLayoutManager);
 //                set adapter for recycle view
                     recyclerViewSearchSong.setAdapter(searchSongsAdapter);
+}
+    
+//     private void SearchSongs(String query){
+//         DataService dataService = APIService.getService();
 
-                    noData.setVisibility(GONE);
-                    recyclerViewSearchSong.setVisibility(VISIBLE);
+//         ProgressDialog dialog = ProgressDialog.show(
+//                 getActivity(),"","Please wait...",true
+//         );
 
-                } else {
+//         Call<List<Song>> callback = dataService.GetDataSearch(query);
 
-                    dialog.dismiss();
+//         callback.enqueue(new Callback<List<Song>>() {
+//             @Override
+//             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
 
-                    recyclerViewSearchSong.setVisibility(GONE);
+//                 ArrayList<Song> songArrayList = (ArrayList<Song>) response.body();
 
-                    noData.setVisibility(VISIBLE);
-                }
-            }
+//                 if (songArrayList.size() > 0) {
 
-            @Override
-            public void onFailure(Call<List<Song>> call, Throwable t) {
+//                     dialog.dismiss();
 
-            }
-        });
+//                     searchSongsAdapter = new SearchSongsAdapter(getActivity(), songArrayList);
 
-    }
+//                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+//                     recyclerViewSearchSong.setLayoutManager(linearLayoutManager);
+// //                set adapter for recycle view
+//                     recyclerViewSearchSong.setAdapter(searchSongsAdapter);
+
+//                     noData.setVisibility(GONE);
+//                     recyclerViewSearchSong.setVisibility(VISIBLE);
+
+//                 } else {
+
+//                     dialog.dismiss();
+
+//                     recyclerViewSearchSong.setVisibility(GONE);
+
+//                     noData.setVisibility(VISIBLE);
+//                 }
+//             }
+
+//             @Override
+//             public void onFailure(Call<List<Song>> call, Throwable t) {
+
+//             }
+//         });
+
+//     }
 }
